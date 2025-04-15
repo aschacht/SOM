@@ -16,18 +16,17 @@ public class nuron  extends BaseNuron implements NuronMetaStructure{
 		
 		
 		public void adjustVector(vector changeInVec){
-			this.vectorOfNuron.wdimension = this.vectorOfNuron.wdimension+changeInVec.wdimension;
-			this.vectorOfNuron.w1dimension = this.vectorOfNuron.w1dimension+changeInVec.w1dimension;
-			this.vectorOfNuron.w2dimension = this.vectorOfNuron.w2dimension+changeInVec.w2dimension;
+			this.vectorOfNuron.setNDimension(3,this.vectorOfNuron.dimensions[3]+changeInVec.dimensions[3]);
+			this.vectorOfNuron.setNDimension(4,this.vectorOfNuron.dimensions[4]+changeInVec.dimensions[4]);
 		}
 		
 		public double testDot(vector vec){
-			double dotproduce =  (this.vectorOfNuron.wdimension*vec.wdimension)+(this.vectorOfNuron.w1dimension*vec.w1dimension)+(this.vectorOfNuron.w2dimension*vec.w2dimension);
+			double dotproduce =  (this.vectorOfNuron.dimensions[3]*vec.dimensions[3])+(this.vectorOfNuron.dimensions[4]*vec.dimensions[4]);
 			return dotproduce;
 		}
 		
 		public double testDistance(vector vec){
-			double distance = Math.sqrt(Math.pow((vec.xdimension -this.vectorOfNuron.xdimension),2)+Math.pow((vec.ydimension -this.vectorOfNuron.ydimension),2));
+			double distance = Math.sqrt(Math.pow((vec.dimensions[0] -this.vectorOfNuron.dimensions[0]),2)+Math.pow((vec.dimensions[1] -this.vectorOfNuron.dimensions[1]),2));
 			return distance;
 		}
 
@@ -36,6 +35,13 @@ public class nuron  extends BaseNuron implements NuronMetaStructure{
 		@Override
 		public NuralType typeOfNuron() {
 			return this.typeOfNuron;
+		}
+
+
+
+		@Override
+		public int getDimensions() {
+			return vectorOfNuron.dimensions.length;
 		}
 		
 		

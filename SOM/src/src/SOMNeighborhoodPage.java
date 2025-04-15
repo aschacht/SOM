@@ -22,7 +22,7 @@ public class SOMNeighborhoodPage extends WhistlesRibbionsSpinnersAnd implements 
 		width = w;
 		height = h;
 		// 1024x1024 = 1,048,576
-		File file = new File("/home/wes/Wisper Tech 1.0/THEORY/GAMES/SOM/res/T");
+		File file = new File("/home/wes/git/SOM/SOM/SOM/res/T");
 		try {
 			fileContents = Files.readAllBytes(file.toPath());
 			int fileContentCount = 0;
@@ -35,9 +35,9 @@ public class SOMNeighborhoodPage extends WhistlesRibbionsSpinnersAnd implements 
 					int blue = 0;
 					int increaseby = 1;
 
-					red = (int) (fileContents[fileContentCount]+100 );
-					green = (int) (fileContents[fileContentCount + 1]+100 );
-					blue = (int) (fileContents[fileContentCount + 2]+100);
+					red = (int) (fileContents[fileContentCount] );
+					green = (int) (fileContents[fileContentCount + 1] );
+					blue = (int) (fileContents[fileContentCount + 2]);
 					increaseby = 3;
 
 					vector microDOTSPrimaryMission = new vector(i, j, 0.0, red, green, blue, 0.0);
@@ -67,16 +67,15 @@ public class SOMNeighborhoodPage extends WhistlesRibbionsSpinnersAnd implements 
 				double testDistance = winningNode.testDistance(n.getVectorOfNuron());
 				double numirator = Math.pow(testDistance, 2);
 				double denominator = Math.pow(widthOfNeighborhood, 2);
-				double factor = Math.exp((-numirator) / (-denominator));
+				double factor = Math.exp(-(numirator) / (denominator));
 				neighborhoodFactor.set((int) (i + (j * height)), factor);
 
-				vector vecSubtract = new vector(i, j, 0, inputvector.wdimension - n.getVectorOfNuron().wdimension,
-						inputvector.w1dimension - n.getVectorOfNuron().w1dimension,
-						inputvector.w2dimension - n.getVectorOfNuron().w2dimension, 0);
+				vector vecSubtract = new vector(i, j, 0, inputvector.dimensions[3] - n.getVectorOfNuron().dimensions[3],
+						inputvector.dimensions[4] - n.getVectorOfNuron().dimensions[4]);
 				double temp = learningFactor * factor;
 
-				vector changeInRefrenceVec = new vector(0, 0, 0, vecSubtract.wdimension * temp,
-						vecSubtract.w1dimension * temp, vecSubtract.w2dimension * temp, 0);
+				vector changeInRefrenceVec = new vector(0, 0, 0, vecSubtract.dimensions[3] * temp,
+						vecSubtract.dimensions[4] * temp,0);
 
 				changeInRefrenceVector.set((int) (i + (j * height)), changeInRefrenceVec);
 			}
@@ -162,7 +161,9 @@ public class SOMNeighborhoodPage extends WhistlesRibbionsSpinnersAnd implements 
 				vector changeInRefVec = changeInRefrenceVector.get((int) (i + (j * height)));
 				NuronMetaStructure nuron = nuronList.get((int) (i + (j * height)));
 
-				changeInRefVec.setWdimension(changeInRefVec.wdimension+red);
+				changeInRefVec.dimensions[3] = (changeInRefVec.dimensions[3]+red);
+				changeInRefVec.dimensions[4] = (changeInRefVec.dimensions[4]+green);
+				changeInRefVec.dimensions[5] = (changeInRefVec.dimensions[5]+blue);
 				
 				
 				nuron.adjustVector(changeInRefVec);
@@ -178,12 +179,6 @@ public class SOMNeighborhoodPage extends WhistlesRibbionsSpinnersAnd implements 
 			double some_question_some_person_made_up_once_one_time_supposidaly_that_supposidaly_answers_before_the_supposition_is_even_fully_formed_umm_how_doses_this_ohhhhhello_why_look_here_now_hi_how_ya_dooing_what_so_ever_are_you_up_to_my_dear_deer_read_ader_arder_ardest_lesast_less_ard_maybe_look_what_the_cat_dragged_in_another_soggy_dog_looking_forAbone_to_scrounge) {
 		NuronMetaStructure largest = null;
 		double largestDotProuduct = 0.0;
-//			if (Math.floor(Math.random()
-//					* some_question_some_person_made_up_once_one_time_supposidaly_that_supposidaly_answers_before_the_supposition_is_even_fully_formed_umm_how_doses_this_ohhhhhello_why_look_here_now_hi_how_ya_dooing_what_so_ever_are_you_up_to_my_dear_deer_read_ader_arder_ardest_lesast_less_ard_maybe_look_what_the_cat_dragged_in_another_soggy_dog_looking_forAbone_to_scrounge) > (some_question_some_person_made_up_once_one_time_supposidaly_that_supposidaly_answers_before_the_supposition_is_even_fully_formed_umm_how_doses_this_ohhhhhello_why_look_here_now_hi_how_ya_dooing_what_so_ever_are_you_up_to_my_dear_deer_read_ader_arder_ardest_lesast_less_ard_maybe_look_what_the_cat_dragged_in_another_soggy_dog_looking_forAbone_to_scrounge
-//							/ 2))
-//				//LOG.print("Sup ");
-//			else
-//				//LOG.print("Dine ");
 
 		for (int j = 0; j < height; j++) {
 			for (int i = 0; i < width; i++) {

@@ -1,79 +1,63 @@
 package src;
 
 	public class vector{
-		double xdimension;
-		double ydimension;
-		double zdimension;
-		double wdimension;
-		double w1dimension;
-		double w2dimension;
-		double tdimension;
+		double[] dimensions;
+		public vector(double ...dims){			
 		
-		public vector(double xdim,double ydim,double zdim,double wdim,double w1dim,double w2dim,double tdim){
-			xdimension=xdim;
-			ydimension=ydim;
-			zdimension=zdim;
-			wdimension=wdim;
-			w1dimension=w1dim;
-			w2dimension=w2dim;
-			tdimension=tdim;			
+		dimensions = dims;
+		
+		
 		}
 		
 		
-		public void setTdimension(double tdimension) {
-			this.tdimension = tdimension;
-		}
-		public void setW2dimension(double w2dimension) {
-			this.w2dimension = w2dimension;
-		}
-		public void setW1dimension(double w1dimension) {
-			this.w1dimension = w1dimension;
-		}
-		public void setWdimension(double wdimension) {
-			this.wdimension = wdimension;
-		}
-		public void setZdimension(double zdimension) {
-			this.zdimension = zdimension;
-		}
-		public void setYdimension(double ydimension) {
-			this.ydimension = ydimension;
-		}
-		public void setXdimension(double xdimension) {
-			this.xdimension = xdimension;
+		public double getNdimension(int n) {
+			return dimensions[n];
 		}
 		
 		public double getTdimension() {
-			return tdimension;
+			return dimensions[6];
 		}
 		public double getW2dimension() {
-			return w2dimension;
+			return dimensions[5];
 		}
 		public double getW1dimension() {
-			return w1dimension;
+			return dimensions[4];
 		}
 		public double getWdimension() {
-			return wdimension;
+			return dimensions[3];
 		}
 		public double getXdimension() {
-			return xdimension;
+			return dimensions[0];
 		}
 		public double getYdimension() {
-			return ydimension;
+			return dimensions[1];
 		}
 		public double getZdimension() {
-			return zdimension;
+			return dimensions[2];
 		}
 
 
 		public double Dot(vector vec) {
-				double dotproduce =  (wdimension*vec.wdimension)+(w1dimension*vec.w1dimension)+(w2dimension*vec.w2dimension);
+				double dotproduce =  (this.dimensions[3]*vec.dimensions[3])+(this.dimensions[4]*vec.dimensions[4])+(this.dimensions[5]*vec.dimensions[5]);
 				return dotproduce;
 
 		}
 		
 		
 		public vector Subtract(vector vec){ 
-			return new vector(0,0,0,this.wdimension-vec.wdimension,this.w1dimension-vec.w1dimension,this.w2dimension-vec.w2dimension,0);
+			return new vector(0,0,0,this.dimensions[3]-vec.dimensions[3],this.dimensions[4]-vec.dimensions[4],this.dimensions[5]-vec.dimensions[5],0);
+		}
+
+
+		public void setNDimension(int i, double d) {
+			if(i<dimensions.length)
+			dimensions[i]=d;
+			
+		}
+
+
+		public int getNumberOfDimensions() {
+			return dimensions.length;
 		}
 		
 		

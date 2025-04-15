@@ -1,4 +1,5 @@
 package src;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -20,6 +22,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import vectorization.LSA;
+import visulization.PCA;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -34,7 +40,7 @@ import java.awt.Container;
 
 public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 
-	private static boolean huh=false;
+	private static boolean huh = false;
 	private static boolean what = huh;
 
 	private static final String Experiment_1_NAME = "SOM Basics";
@@ -50,9 +56,8 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 	private static final String LOGGINGACTIVERUN = "activeRun" + CURRENTVIEWOFACTIVENETWORK + ".txt";
 
 	private static final String FILE_TO_LOAD_JPG = "whatIsLove.jpg";
-	private static String currentWorkspaceDirectory = "/home/wes/Wisper Tech 1.0/THEORY/GAMES/SOM";
-	private static String nicePictureToShowWhenNotLogging = "/home/wes/Wisper Tech 1.0/THEORY/GAMES/SOM/res/1.jpg"
-			;
+	private static String currentWorkspaceDirectory = "/home/wes/git/SOM/SOM/SOM";
+	private static String nicePictureToShowWhenNotLogging = "/home/wes/git/SOM/SOM/SOM/res/1.jpg";
 
 	private static String nice_picture_to_show_when_you_have_decided_to_log_absolutePath_where_logging_is_enabled = currentWorkspaceDirectory
 			+ "/res/DATA/IMAGE/IMAGES/" + CURRENT__LOGGING_CHANNEL_ZERO_TO_INITILIZE_JPG;
@@ -99,28 +104,20 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 	private static JPanel pane3ThiSis____AHhHhahahaDESIGNeL3ment_and_it_ispane3 = new JPanel();
 
 	// WITHOUTLOGGING
-	private static int widthOfNeighborhood = 512;
+	private static int widthOfNeighborhood = 32;
 	private static double learningFactor = 0.4;
 	private static JTextArea txtrThisIsNeat;
 	private static ArrayList<vector> trainingList;
 	private static ArrayList<JTextArea> factsaboutanexperimentthatisrunning;
-	private static int saveCount=0;
+	private static int saveCount = 0;
 
-	
-	private void buildExperiment1GUIElements(){
+	private void buildExperiment1GUIElements() {
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	public static void main(String[] args) throws IOException {
 // LOGGing
-		
-		
+
 		CURRENTVIEWOFACTIVENETWORK = 0;
 		runsetup();
 		runsimulationin(SOMSIMMULATIONUCOUNTLOWERLIMIT);
@@ -130,7 +127,6 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 
 		some_question_some_person_made_up_once_one_time_supposidaly_that_supposidaly_answers_before_the_supposition_is_even_fully_formed_so_lets_make_one_up_shall_we_firstly_lets_introduce_each_other_to_the_coolest_emotion_that_you_have_ever_experienced_only_there_should_read_howdy_dablah_do_dee_da_woke_up_in_a_video_store_naked_and_alone = 0;
 		some_question_some_person_made_up_once_one_time_supposidaly_that_supposidaly_answers_before_the_supposition_is_even_fully_formed_so_lets_make_one_up_shall_we_firstly_lets_introduce_each_other_to_the_coolest_emotion_that_you_have_ever_experienced_only_there_should_read_howdy_dablah_do_dee_da_do_dumpty_da_dup_dup_duppppppppppreeeeeeeeeeeeeeeeeeeeeeeee_deeeeeeeeeeeeeeeee_oplacodia_a_a_a_a_a_glue = 1;
-
 
 		buildSOMACTON_and_generate_training_vectors();
 
@@ -145,9 +141,7 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 	}
 
 	private static void setupDisplayStuff() throws IOException {
-		
-		
-		
+
 		factsaboutanexperimentthatisrunning = new ArrayList<JTextArea>();
 		txtrThisIsNeat = new JTextArea();
 		txtrHeight = new JTextArea();
@@ -158,7 +152,6 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 			makeapretendfactaboutblankMILKHASSAssssoomeeeaspectthat_makes_it_invisiable_to_every_one_from_the_fire_dimensions();
 		}
 
-		
 		img = ImageIO.read(new File(nicePictureToShowWhenNotLogging));
 		img2 = ImageIO.read(new File(nicePictureToShowWhenNotLogging));
 		img3 = ImageIO.read(new File(nicePictureToShowWhenNotLogging));
@@ -168,32 +161,30 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 		image2 = new ImageIcon(img2);
 		imageForSeed2 = new JLabel(image2);
 		image3 = new ImageIcon(img3);
-		imageForSeed3 = new JLabel(image3);		
-		
-		//displaystuff
+		imageForSeed3 = new JLabel(image3);
+
+		// displaystuff
 		frameThiSis____AHHHHHDesiGnEl3ment_and_it_is_frame0 = new JFrame("FrameDemo");
 		pane3ThiSis____AHhHhahahaDESIGNeL3ment_and_it_ispane3 = new JPanel(); // use
 		pane2ThiSis____AHellohowareyathisis_a_whahooooooo_and_it_is_pane2 = new JPanel(); // use
 		pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1 = new JPanel(); // use
 
 		infogroupThiSis____ohhhhohhhhhohhhhhThisIsTHeInfoGroupPanelThatDisplaysStatsAboutRunningScenario = new Panel();
-		
-		final JFileChooser fc = new JFileChooser();		
+
+		final JFileChooser fc = new JFileChooser();
 		final JTextArea backgroundimage = new JTextArea();
 		JButton btnFileChooser = new JButton("file");
 
 		tabbedPaneThiSis____thisdisplays_inaTUBULARtabformationthisiswhereeachCHANNELisADDED = new JTabbedPane(
 				JTabbedPane.TOP);
 
-		tabbedPaneThiSis____thisdisplays_inaTUBULARtabformationthisiswhereeachCHANNELisADDED.addTab(Experiment_1_NAME, null,
-				pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1, null);
+		tabbedPaneThiSis____thisdisplays_inaTUBULARtabformationthisiswhereeachCHANNELisADDED.addTab(Experiment_1_NAME,
+				null, pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1, null);
 		tabbedPaneThiSis____thisdisplays_inaTUBULARtabformationthisiswhereeachCHANNELisADDED.addTab(Experiment_2_NAME,
 				null, pane2ThiSis____AHellohowareyathisis_a_whahooooooo_and_it_is_pane2, null);
 		tabbedPaneThiSis____thisdisplays_inaTUBULARtabformationthisiswhereeachCHANNELisADDED.addTab(Experiment_3_NAME,
 				null, pane3ThiSis____AHhHhahahaDESIGNeL3ment_and_it_ispane3, null);
 
-		
-	
 		if (AREWELOGGING) {
 			backgroundimage
 					.setText(nice_picture_to_show_when_you_have_decided_to_log_absolutePath_where_logging_is_enabled);
@@ -203,33 +194,24 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 
 		frameThiSis____AHHHHHDesiGnEl3ment_and_it_is_frame0.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
 		pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1
-		.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+				.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		pane2ThiSis____AHellohowareyathisis_a_whahooooooo_and_it_is_pane2
-		.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+				.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		pane3ThiSis____AHhHhahahaDESIGNeL3ment_and_it_ispane3.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-		
-		
 		pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1
 				.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		pane2ThiSis____AHellohowareyathisis_a_whahooooooo_and_it_is_pane2
-		.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));		
-		pane3ThiSis____AHhHhahahaDESIGNeL3ment_and_it_ispane3
-		.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+				.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		pane3ThiSis____AHhHhahahaDESIGNeL3ment_and_it_ispane3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
 		infogroupThiSis____ohhhhohhhhhohhhhhThisIsTHeInfoGroupPanelThatDisplaysStatsAboutRunningScenario
-		.setLayout(new GridLayout(7, 1, 0, 0));
-		
-		
-		
+				.setLayout(new GridLayout(7, 1, 0, 0));
+
 		pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1
 				.add(infogroupThiSis____ohhhhohhhhhohhhhhThisIsTHeInfoGroupPanelThatDisplaysStatsAboutRunningScenario);
-
-
-		
 
 		infogroupThiSis____ohhhhohhhhhohhhhhThisIsTHeInfoGroupPanelThatDisplaysStatsAboutRunningScenario
 				.add(backgroundimage);
@@ -292,10 +274,7 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 		infogroupThiSis____ohhhhohhhhhohhhhhThisIsTHeInfoGroupPanelThatDisplaysStatsAboutRunningScenario
 				.add(LearningFactorText);
 
-
 		imageForSeed.setHorizontalAlignment(SwingConstants.TRAILING);
-
-
 
 		pane1ThiSis____ElloGObunerGOVENERGoVERMERmeRmErRrrRr_and_it_is_pane1.add(imageForSeed);
 		pane2ThiSis____AHellohowareyathisis_a_whahooooooo_and_it_is_pane2.add(imageForSeed2);
@@ -306,7 +285,28 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 	private static void buildSOMACTON_and_generate_training_vectors() {
 		trainSOM = new SOMAction(learningFactor, widthOfNeighborhood);
 
-		generateTrainingVectors(width, height);
+//		generateTrainingVectors(width, height);
+		generateTrainingVectorsFromText();
+		
+		
+	}
+
+	private static void generateTrainingVectorsFromText() {
+
+
+		trainingList = new ArrayList<vector>();
+		
+		
+		
+		vector[] lsa = LSA.LSA();
+		
+		
+		for (int i = 0; i < lsa.length; i++) {
+			vector tempVec0 = new vector(0, 0, 0, lsa[i].dimensions[0], lsa[i].dimensions[1]);
+			trainingList.add(tempVec0);
+		}
+	
+		
 	}
 
 	private static void makeapretendfactaboutblankMILKHASSAssssoomeeeaspectthat_makes_it_invisiable_to_every_one_from_the_fire_dimensions(
@@ -328,85 +328,101 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 	private static void runsimulationin(int count) {
 
 		while (count < SOMSIMMULATIONUCOUNTUPPERLIMIT) {
-			//LOG.println("Current Iteration " + count);
+			// LOG.println("Current Iteration " + count);
 			txtrThisIsNeat.setText("Iteration Count: " + count);
+			NuronMetaStructure[] nuronNei = new NuronMetaStructure[neighborhoodList.size()];
+			for (int k = 0; k < neighborhoodList.size(); k++) {
+				nuronNei[k] = neighborhoodList.get(k);
+			}
+
+			double[][] reducedData = PCA.reduceDimensions(nuronNei, 4);
 			for (int i = 0; i < height; i++) {
 				for (int j = 0; j < width; j++) {
 
 					NuronMetaStructure nuronN = neighborhoodList.get(j + (i * height));
+
 					NuronMetaStructure nuronG = ghettoList.get(j + (i * height));
 					NuronMetaStructure nuronC = gatedCommunityList.get(j + (i * height));
+					int index = i * width + j; // Calculate the index in the reduced data array;
+					double[] vector = reducedData[index];
 
-					int wN = (int) (nuronN.getVectorOfNuron().wdimension);
-					int w1N = (int) (nuronN.getVectorOfNuron().w1dimension);
-					int w2N = (int) (nuronN.getVectorOfNuron().w2dimension);
+					int wN = (int) Math.min(255, Math.max(0, vector[0] * 255)); // Scale to 0-255
+					int w1N = (int) Math.min(255, Math.max(0, vector[1] * 255));
+					int w2N = (int) Math.min(255, Math.max(0, vector[2] * 255));
+					int w3N = (int) Math.min(255, Math.max(0, vector[3] * 255));
 
-					int wG = (int) (nuronG.getVectorOfNuron().wdimension);
-					int w1G = (int) (nuronG.getVectorOfNuron().w1dimension);
-					int w2G = (int) (nuronG.getVectorOfNuron().w2dimension);
+					int wG = (int) (nuronG.getVectorOfNuron().dimensions[3]);
+					int w1G = (int) (nuronG.getVectorOfNuron().dimensions[4]);
+					int w2G = (int) (nuronG.getVectorOfNuron().dimensions[5]);
 
-					int wC = (int) (nuronC.getVectorOfNuron().wdimension);
-					int w1C = (int) (nuronC.getVectorOfNuron().w1dimension);
-					int w2C = (int) (nuronC.getVectorOfNuron().w2dimension);
+					int wC = (int) (nuronC.getVectorOfNuron().dimensions[3]);
+					int w1C = (int) (nuronC.getVectorOfNuron().dimensions[4]);
+					int w2C = (int) (nuronC.getVectorOfNuron().dimensions[5]);
 
-					if (wG > 250) {
-						wG = 250;
+					if (wG > 255) {
+						wG = 255;
 					}
 					if (wG < 0) {
 						wG = 0;
 					}
-					if (w1G > 250) {
-						w1G = 250;
+					if (w1G > 255) {
+						w1G = 255;
 					}
 					if (w1G < 0) {
 						w1G = 0;
 					}
-					if (w2G > 250) {
-						w2G = 250;
+					if (w2G > 255) {
+						w2G = 255;
 					}
 					if (w2G < 0) {
 						w2G = 0;
 					}
 
-					if (wN > 250) {
-						wN = 250;
+					if (wN > 255) {
+						wN = 255;
 					}
 					if (wN < 0) {
 						wN = 0;
 					}
-					if (w1N > 250) {
-						w1N = 250;
+					if (w1N > 255) {
+						w1N = 255;
 					}
 					if (w1N < 0) {
 						w1N = 0;
 					}
-					if (w2N > 250) {
-						w2N = 250;
+					if (w2N > 255) {
+						w2N = 255;
 					}
 					if (w2N < 0) {
 						w2N = 0;
 					}
+					if (w3N > 255) {
+						w3N = 255;
+					}
+					if (w3N < 0) {
+						w3N = 0;
+					}
 
-					if (wC > 250) {
-						wC = 250;
+					if (wC > 255) {
+						wC = 255;
 					}
 					if (wC < 0) {
 						wC = 0;
 					}
-					if (w1C > 250) {
-						w1C = 250;
+					if (w1C > 255) {
+						w1C = 255;
 					}
 					if (w1C < 0) {
 						w1C = 0;
 					}
-					if (w2C > 250) {
-						w2C = 250;
+					if (w2C > 255) {
+						w2C = 255;
 					}
 					if (w2C < 0) {
 						w2C = 0;
 					}
 
-					Color SOMCOLOR = new Color(wN, w1N, w2N);
+					Color SOMCOLOR = new Color(wN, w1N, w2N, w3N);
 					Color SOMGHETTOCOLOR = new Color(wG, w1G, w2G);
 					Color SOMGATEDCOMMUNITY = new Color(wC, w1C, w2C);
 
@@ -419,20 +435,30 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 					PANE_THREE_CHANNEL.drawRect(i, j, 1, 1);
 				}
 			}
-			 
-			 File outputfile = new File("/home/wes/Wisper Tech 1.0/THEORY/GAMES/SOM/res/som/saved"+saveCount+".png");
-			 saveCount++;
-			 try {
+
+			String path = "";
+			if (saveCount < 10) {
+				path = "/home/wes/git/SOM/SOM/SOM/res/som/000" + saveCount + ".png";
+			} else if (saveCount < 100) {
+				path = "/home/wes/git/SOM/SOM/SOM/res/som/00" + saveCount + ".png";
+			} else if (saveCount < 1000) {
+				path = "/home/wes/git/SOM/SOM/SOM/res/som/0" + saveCount + ".png";
+			} else
+				path = "/home/wes/git/SOM/SOM/SOM/res/som/" + saveCount + ".png";
+
+			File outputfile = new File(path);
+			saveCount++;
+			try {
 				ImageIO.write(img, "png", outputfile);
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 			frameThiSis____AHHHHHDesiGnEl3ment_and_it_is_frame0.pack();
 			frameThiSis____AHHHHHDesiGnEl3ment_and_it_is_frame0.setVisible(true);
 			frameThiSis____AHHHHHDesiGnEl3ment_and_it_is_frame0.repaint();
 
-			//LOG.println("SOMSIMMULATIONUCOUNTLOWERLIMIT: " + count);
+			// LOG.println("SOMSIMMULATIONUCOUNTLOWERLIMIT: " + count);
 
 			// trainSOM.train(new vector(0,0,0,255,0,0,0),
 			// some_question_some_person_made_up_once_one_time_supposidaly_that_supposidaly_answers_before_the_supposition_is_even_fully_formed_so_lets_make_one_up_shall_we_firstly_lets_introduce_each_other_to_the_coolest_emotion_that_you_have_ever_experienced_only_there_should_read_howdy_dablah_do_dee_da_woke_up_in_a_video_store_naked_and_alone);
@@ -448,88 +474,93 @@ public class TutorialNetworksOne extends WhistlesRibbionsSpinnersAnd {
 
 	}
 
-
 	private static void generateTrainingVectors(int width, int height) {
 		trainingList = new ArrayList<vector>();
 		// red
-		
-		
+
 		// 1024x1024 = 1,048,576
-				File file = new File("/home/wes/Wisper Tech 1.0/THEORY/GAMES/SOM/res/T");
-				try {
-					byte[] fileContent = Files.readAllBytes(file.toPath());
-					System.out.println("bytes in T: "+fileContent.length);
-					int fileContentCount = 0;
-					for (int j = 0; j < height; j++) {
-						for (int i = 0; i < width; i++) {
-							
-							int choice =(int)(Math.random()*13);
-							int red =0;
-							int green = 0;
-							int blue =0;
-							int increaseby =1;
-							if(choice ==0) {
-								red = (int) (fileContent[fileContentCount]);
-							}else if(choice ==1) {
-								green =(int) (fileContent[fileContentCount]);
-							}else if(choice == 2) {
-								blue =(int) (fileContent[fileContentCount]);
-							}else if(choice == 3) {
-								red =(int) (fileContent[fileContentCount]);
-								green =(int) (fileContent[fileContentCount+1]);
-								increaseby=2;
-							}else if(choice == 4) {
-								red =(int) (fileContent[fileContentCount]);
-								blue =(int) (fileContent[fileContentCount+1]);
-								increaseby=2;
-							}else if(choice >= 5 && choice <=12) {
-								green =(int) (fileContent[fileContentCount]);
-								blue =(int) (fileContent[fileContentCount+1]);
-								increaseby=2;
-							}else if(choice >= 13) {
-								red =(int) (fileContent[fileContentCount]);
-								green =(int) (fileContent[fileContentCount+1]);
-								blue =(int) (fileContent[fileContentCount+2]);
-								increaseby=3;
-							}
-							
-							vector tempVec0 = new vector(0, 0, 0, red, green,blue,//(Math.random() * 205) + 50, Math.random() * 50, Math.random() * 50,
-									0);
-							trainingList.add(tempVec0);
+		File file = new File("/home/wes/git/SOM/SOM/SOM/res/T");
+		try {
+			byte[] fileContent = Files.readAllBytes(file.toPath());
+			System.out.println("bytes in T: " + fileContent.length);
+			int fileContentCount = 0;
+			for (int j = 0; j < height; j++) {
+				for (int i = 0; i < width; i++) {
+
+					if (fileContentCount < fileContent.length) {
+						int red = fileContent[fileContentCount];
+						fileContentCount++;
+
+						int green = 0;
+						if (fileContentCount < fileContent.length) {
+							green = fileContent[fileContentCount] ;
+							fileContentCount++;
+						} else {
+						 green = (int) (Math.random() * 55);
 						}
+						
+						
+						
+						
+						int blue = 0;
+						if (fileContentCount < fileContent.length) {
+							blue = fileContent[fileContentCount];
+							fileContentCount++;
+						} else {
+							blue = (int) (Math.random() * 55);
+						}
+						int alpha = 0;
+						if (fileContentCount < fileContent.length) {
+							alpha = fileContent[fileContentCount] ;
+							fileContentCount++;
+						} else {
+							alpha = (int) (Math.random() * 255);
+						}
+						int w0 = 0;
+						if (fileContentCount < fileContent.length) {
+							w0 = fileContent[fileContentCount] ;
+							fileContentCount++;
+						} else {
+							w0 = (int) (Math.random() * 255);
+						}
+
+						int w1 = 0;
+						if (fileContentCount < fileContent.length) {
+							w1 = fileContent[fileContentCount] ;
+							fileContentCount++;
+						} else {
+							w1 = (int) (Math.random() * 255);
+						}
+						int w2 = 0;
+						if (fileContentCount < fileContent.length) {
+							w2 = fileContent[fileContentCount] ;
+							fileContentCount++;
+						} else {
+							w2 = (int) (Math.random() * 255);
+						}
+						vector tempVec0 = new vector(0, 0, 0, red, green, blue, alpha, w0, w1, w2);
+						trainingList.add(tempVec0);
+					} else {
+						int red = (int) (Math.random() * 255);
+						int green = (int) (Math.random() * 55);
+						int blue = (int) (Math.random() * 55);
+						int alpha = (int) (Math.random() * 255);
+						int w0 = (int) (Math.random() * 255);
+
+						int w1 = (int) (Math.random() * 255);
+						int w2 = (int) (Math.random() * 255);
+						vector tempVec0 = new vector(0, 0, 0, red, green, blue, alpha, w0, w1, w2);
+						trainingList.add(tempVec0);
 					}
-
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-		
-//		for (int i = 0; i < 5000; i++) {
-//			vector tempVec0 = new vector(0, 0, 0, 100 ,100,100,//(Math.random() * 205) + 50, Math.random() * 50, Math.random() * 50,
-//					0);
-//			trainingList.add(tempVec0);
-//		}
-//		// //green
-//		for (int i = 0; i < 5000; i++) {
-////			vector tempVec1 = new vector(0, 0, 0, Math.random() * 50, (Math.random() * 205) + 50, Math.random() * 50,
-////					0);
-//			vector tempVec1 = new vector(0, 0, 0, 100 ,100,100,//(Math.random() * 205) + 50, Math.random() * 50, Math.random() * 50,
-//					0);
-//			trainingList.add(tempVec1);
-//		}
-//		// //blue
-//		for (int i = 0; i < 5000; i++) {
-////			vector tempVec2 = new vector(0, 0, 0, Math.random() * 50, Math.random() * 50, (Math.random() * 205) + 50,
-////					0);
-//			vector tempVec2 = new vector(0, 0, 0, 100 ,100,100,//(Math.random() * 205) + 50, Math.random() * 50, Math.random() * 50,
-//					0);
-//			trainingList.add(tempVec2);
-//		}
+			}
 
-
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
-
 
 	@Override
 	public void some_awesome_function_that_is_totaly_finished_and_not_made_up_oh_hey_look_over_there(

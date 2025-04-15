@@ -10,5 +10,5 @@ public interface NuronMetaStructure {
 	void adjustVector(vector changeInRefVec);
 
 	double testDistance(vector vectorOfNuron);
-
+	int getDimensions();
 }

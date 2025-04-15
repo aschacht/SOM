@@ -171,9 +171,9 @@ public class SOMGatedCommunityPage extends WhistlesRibbionsSpinnersAnd implement
 	}
 
 	private ArrayList<NuronMetaStructure> get_Neighbors(NuronMetaStructure q) {
-		int i = (int) q.getVectorOfNuron().xdimension;
-		int j = (int) q.getVectorOfNuron().ydimension;
-		int k = (int) q.getVectorOfNuron().zdimension;
+		int i = (int) q.getVectorOfNuron().dimensions[0];
+		int j = (int) q.getVectorOfNuron().dimensions[1];
+		int k = (int) q.getVectorOfNuron().dimensions[2];
 
 		ArrayList<NuronMetaStructure> saveList = new ArrayList<NuronMetaStructure>();
 
@@ -237,9 +237,9 @@ public class SOMGatedCommunityPage extends WhistlesRibbionsSpinnersAnd implement
 
 		vector saveVector = new vector(0, 0, 0, 0, 0, 0, 0);
 		for (NuronMetaStructure nuron : longestContiguiousCount) {
-			saveVector.wdimension += nuron.getVectorOfNuron().wdimension;
-			saveVector.w1dimension += nuron.getVectorOfNuron().w1dimension;
-			saveVector.w2dimension += nuron.getVectorOfNuron().w2dimension;
+			saveVector.dimensions[3] += nuron.getVectorOfNuron().dimensions[3];
+			saveVector.dimensions[4] += nuron.getVectorOfNuron().dimensions[4];
+			saveVector.dimensions[5] += nuron.getVectorOfNuron().dimensions[5];
 		}
 		return saveVector;
 	}
@@ -256,12 +256,12 @@ public class SOMGatedCommunityPage extends WhistlesRibbionsSpinnersAnd implement
 				double temp1 = 0.0, temp2 = 0.0, temp3 = 0.0;
 
 				for (NuronMetaStructure n : ghetto) {
-					temp1 = (n.getVectorOfNuron().wdimension - r_i.getVectorOfNuron().w1dimension)
-							/ n.getVectorOfNuron().wdimension;
-					temp2 = (n.getVectorOfNuron().wdimension - r_i.getVectorOfNuron().w1dimension)
-							/ n.getVectorOfNuron().wdimension;
-					temp3 = (n.getVectorOfNuron().wdimension - r_i.getVectorOfNuron().w1dimension)
-							/ n.getVectorOfNuron().wdimension;
+					temp1 = (n.getVectorOfNuron().dimensions[3] - r_i.getVectorOfNuron().dimensions[4])
+							/ n.getVectorOfNuron().dimensions[3];
+					temp2 = (n.getVectorOfNuron().dimensions[3] - r_i.getVectorOfNuron().dimensions[4])
+							/ n.getVectorOfNuron().dimensions[3];
+					temp3 = (n.getVectorOfNuron().dimensions[3] - r_i.getVectorOfNuron().dimensions[4])
+							/ n.getVectorOfNuron().dimensions[3];
 					if (temp1 > ghettoThreshold) {
 						Aw += 1;
 					}
@@ -285,9 +285,9 @@ public class SOMGatedCommunityPage extends WhistlesRibbionsSpinnersAnd implement
 				double w_2 = 0;
 
 				for (NuronMetaStructure nuron : ghetto) {
-					w_0 += nuron.getVectorOfNuron().wdimension - r_i.getVectorOfNuron().wdimension;
-					w_1 += nuron.getVectorOfNuron().w1dimension - r_i.getVectorOfNuron().w1dimension;
-					w_2 += nuron.getVectorOfNuron().w2dimension - r_i.getVectorOfNuron().w2dimension;
+					w_0 += nuron.getVectorOfNuron().dimensions[3] - r_i.getVectorOfNuron().dimensions[3];
+					w_1 += nuron.getVectorOfNuron().dimensions[4] - r_i.getVectorOfNuron().dimensions[4];
+					w_2 += nuron.getVectorOfNuron().dimensions[5] - r_i.getVectorOfNuron().dimensions[5];
 
 				}
 
@@ -297,9 +297,9 @@ public class SOMGatedCommunityPage extends WhistlesRibbionsSpinnersAnd implement
 				double learningFactorAndNeighborhoodMembership = learningFactor * neighborhoodMembership;
 
 				vector changeInRefrenceVec = new vector(0, 0, 0,
-						vecSubtract.wdimension * learningFactorAndNeighborhoodMembership,
-						vecSubtract.w1dimension * learningFactorAndNeighborhoodMembership,
-						vecSubtract.w2dimension * learningFactorAndNeighborhoodMembership, 0);
+						vecSubtract.dimensions[3] * learningFactorAndNeighborhoodMembership,
+						vecSubtract.dimensions[4] * learningFactorAndNeighborhoodMembership,
+						vecSubtract.dimensions[5] * learningFactorAndNeighborhoodMembership, 0);
 
 				changeInRefrenceVector.set((int) (i + (j * height)), changeInRefrenceVec);
 			}

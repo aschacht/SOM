@@ -11,7 +11,7 @@ public class nullNuron implements NuronMetaStructure {
 
 	@Override
 	public vector getVectorOfNuron() {
-		return new vector(0,0,0,0,0,0,0);
+		return new vector(0,0,0);
 	}
 
 	@Override
@@ -34,7 +34,13 @@ public class nullNuron implements NuronMetaStructure {
 		return 0;
 	}
 	
+	@Override
+	public int getDimensions() {
+		return 3;
+	}
 	
+	
+
 	
 	
 }
